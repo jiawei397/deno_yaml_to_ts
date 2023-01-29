@@ -42,6 +42,7 @@ export async function writeTSToFileOrStdout(
       Deno.stdout.writeSync(u8);
     }
   });
+  return arr;
 }
 
 /**
