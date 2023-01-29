@@ -1,11 +1,14 @@
 # yaml to TypeScript interface
 
+[![deno version](https://img.shields.io/badge/deno-^1.29.0-blue?logo=deno)](https://github.com/denoland/deno)
+[![Deno](https://github.com/jiawei397/deno-oak-nest/actions/workflows/deno.yml/badge.svg)](https://github.com/jiawei397/deno-oak-nest/actions/workflows/deno.yml)
+
 ## simple use
 
 ### yaml to TypeScript interface file only
 
 ```ts
-import { writeTSToFile } from "./mod.ts";
+import { writeTSToFile } from "https://deno.land/x/yaml_to_ts@v0.1.0/mod.ts";
 
 // to file only
 writeTSToFile("example/test.yaml", "test.ts");
@@ -76,7 +79,7 @@ interface Redis {
 ### yaml to TypeScript interface stdout only
 
 ```ts
-import { writeTSToStdout } from "./mod.ts";
+import { writeTSToStdout } from "https://deno.land/x/yaml_to_ts@v0.1.0/mod.ts";
 
 writeTSToStdout("example/test.yaml");
 ```
@@ -84,7 +87,7 @@ writeTSToStdout("example/test.yaml");
 ### yaml to TypeScript interface both to file and stdout
 
 ```ts
-import { writeTSToFileOrStdout } from "./mod.ts";
+import { writeTSToFileOrStdout } from "https://deno.land/x/yaml_to_ts@v0.1.0/mod.ts";
 
 // both to file and to stdout
 writeTSToFileOrStdout("example/test.yaml", {
@@ -106,7 +109,7 @@ This is a script that you can use directly.
 The param is `-o`.
 
 ```bash
-deno run --allow-read --allow-write cli.ts -f example/test.yaml -o example/test.ts
+deno run --allow-read --allow-write https://deno.land/x/yaml_to_ts@v0.1.0/cli.ts -f example/test.yaml -o example/test.ts
 ```
 
 ### yaml to TypeScript interface stdout only with cli
@@ -114,13 +117,13 @@ deno run --allow-read --allow-write cli.ts -f example/test.yaml -o example/test.
 The param is `-s`.
 
 ```bash
-deno run --allow-read --allow-write cli.ts -f example/test.yaml -s
+deno run --allow-read --allow-write https://deno.land/x/yaml_to_ts@v0.1.0/cli.ts -f example/test.yaml -s
 ```
 
 Then you can use pipe:
 
 ```bash
-deno run --allow-read --allow-write cli.ts -f example/test.yaml -s > aa.ts
+deno run --allow-read --allow-write https://deno.land/x/yaml_to_ts@v0.1.0/cli.ts -f example/test.yaml -s > aa.ts
 ```
 
 ### yaml to TypeScript interface file both to file and stdout with cli
@@ -128,5 +131,13 @@ deno run --allow-read --allow-write cli.ts -f example/test.yaml -s > aa.ts
 The param is `-s` and `-o`.
 
 ```bash
-deno run --allow-read --allow-write cli.ts -f example/test.yaml -o example/test.ts -s
+deno run --allow-read --allow-write https://deno.land/x/yaml_to_ts@v0.1.0/cli.ts -f example/test.yaml -o example/test.ts -s
+```
+
+You can also use install to simplify writing:
+
+```bash
+deno install --allow-read --allow-write -n yt https://deno.land/x/yaml_to_ts@v0.1.0/cli.ts 
+
+yt -f example/test.yaml -o example/test.ts -s
 ```
