@@ -1,12 +1,11 @@
-import * as yaml from "https://esm.sh/js-yaml@4.1.0";
-import JsonToTS from "https://deno.land/x/json_to_ts@v1.7.0/mod.ts";
+import { jsonToTS, yaml } from "./deps.ts";
 
 /**
  * 将yaml字符串导出TS接口
  */
 export function yamlToTS(yamlStr: string): string[] {
   const json = yaml.load(yamlStr);
-  return JsonToTS(json);
+  return jsonToTS(json);
 }
 
 /**
