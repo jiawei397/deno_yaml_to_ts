@@ -17,8 +17,8 @@ if (!serverArgs.f) {
   Deno.exit(1);
 }
 
-let isToStdout = serverArgs.s;
-let destPath = serverArgs.o;
+const isToStdout = serverArgs.s;
+const destPath = serverArgs.o;
 
 writeTSToFileOrStdout(serverArgs.f, {
   destPath,
