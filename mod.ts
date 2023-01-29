@@ -17,17 +17,52 @@ export async function readYamlFileAndToTS(yamlPath: string): Promise<string[]> {
 }
 
 /**
+ * 读取yaml文件，导出TS接口到另一文件或标准输出
+ */
+export async function writeTSToFileOrStdout(
+  yamlPath: string,
+  options: {
+    destPath?: string;
+    isToStdout?: boolean;
+  } = {},
+) {
+  const arr = await readYamlFileAndToTS(yamlPath);
+  const { destPath, isToStdout } = options;
+  if (destPath) {
+    await Deno.writeTextFile(destPath, "");
+  }
+  arr.forEach((typeInterface) => {
+    if (destPath) {
+      Deno.writeTextFileSync(destPath, typeInterface + "\n", {
+        append: true,
+      });
+    }
+    if (isToStdout) {
+      const u8 = (new TextEncoder()).encode(typeInterface + "\n");
+      Deno.stdout.writeSync(u8);
+    }
+  });
+}
+
+/**
  * 读取yaml文件，导出TS接口到另一文件中
  */
-export async function writeTSToFile(yamlPath: string, destPath: string) {
-  const arr = await readYamlFileAndToTS(yamlPath);
-  await Deno.writeTextFile(destPath, "");
-  arr.forEach((typeInterface) => {
-    console.log(typeInterface);
-    Deno.writeTextFileSync(destPath, typeInterface + "\n", {
-      append: true,
-    });
-    const u8 = (new TextEncoder()).encode(typeInterface + "\n");
-    Deno.stdout.writeSync(u8);
+export async function writeTSToFile(
+  yamlPath: string,
+  destPath: string,
+) {
+  return writeTSToFileOrStdout(yamlPath, {
+    destPath,
+  });
+}
+
+/**
+ * 读取yaml文件，导出TS接口到标准输出
+ */
+export async function writeTSToStdout(
+  yamlPath: string,
+) {
+  return writeTSToFileOrStdout(yamlPath, {
+    isToStdout: true,
   });
 }

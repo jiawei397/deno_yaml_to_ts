@@ -1,0 +1,19 @@
+port: 4000
+apiPrefix: api
+redis:
+  port: 6379
+  host: localhost
+  password: xxxx
+  db: 0
+log:
+  appenders:
+    dateFile:
+      filename: logs/deno
+      daysToKeep: 10
+      pattern: yyyy-MM-dd.log
+  categories:
+    default:
+      appenders:
+        - dateFile
+        - console
+      level: DEBUG

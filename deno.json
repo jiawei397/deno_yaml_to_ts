@@ -2,6 +2,6 @@
   "name": "yaml_to_ts",
   "version": "0.1.0",
   "tasks": {
-    "dev": "deno run --allow-read --allow-write example.ts"
+    "dev": "cd example && deno run --allow-read --allow-write mod.ts"
   }
 }
