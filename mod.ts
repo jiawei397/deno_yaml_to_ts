@@ -31,7 +31,3 @@ export async function writeTSToFile(yamlPath: string, destPath: string) {
     Deno.stdout.writeSync(u8);
   });
 }
-
-if (import.meta.main) {
-  writeTSToFile("config.yaml", "test.ts");
-}
